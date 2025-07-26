@@ -1,66 +1,121 @@
+/* myorders.css */
+
 .orders-dashboard {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', sans-serif;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .orders-dashboard h2 {
-  margin-bottom: 20px;
-  color: #2d3748;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
   text-align: center;
+}
+
+.orders-dashboard p.empty,
+.orders-dashboard p {
+  text-align: center;
+  color: #888;
+  font-size: 1.1rem;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: #fafafa;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #27ae60;
+  color: #fff;
 }
 
 th, td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
+  padding: 1rem;
   text-align: center;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
 }
 
-th {
-  background-color: #f6f8fa;
-  color: #333;
+tbody tr:hover {
+  background-color: #f5f5f5;
 }
 
-tr:hover {
-  background-color: #f1f1f1;
-}
-
-.empty {
-  text-align: center;
-  color: #777;
-  margin-top: 20px;
-  font-style: italic;
-}
-
-/* Status styles */
 .status {
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
-  font-size: 0.9em;
   font-weight: bold;
+  display: inline-block;
   text-transform: capitalize;
 }
 
 .status.pending {
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: #ffeaa7;
+  color: #e17055;
 }
 
-.status.delivered {
-  background-color: #d4edda;
-  color: #155724;
+.status.completed {
+  background-color: #dff9fb;
+  color: #00b894;
+}
+
+.status.processing {
+  background-color: #fdcb6e;
+  color: #6c5ce7;
 }
 
 .status.cancelled {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #fab1a0;
+  color: #d63031;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .orders-dashboard {
+    padding: 1rem;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+  }
+
+  td {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-transform: capitalize;
+    display: block;
+    margin-bottom: 4px;
+    color: #2c3e50;
+  }
 }

@@ -1,32 +1,59 @@
 .hero {
-  text-align: center;
-  padding: 80px 20px;
-  background: #e9f5f3;
-  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px;
+  background: linear-gradient(135deg, #e08446, #e35187);
 }
 
-.hero h1 {
+.hero-content {
+  max-width: 50%;
+}
+
+.hero-content h1 {
   font-size: 3rem;
+  color: #2c3e50;
   margin-bottom: 20px;
 }
 
-.hero p {
+.hero-content p {
   font-size: 1.2rem;
-  max-width: 600px;
-  margin: auto;
+  color: #555;
+  margin-bottom: 30px;
 }
 
-.cta-btn {
+.buttons .btn {
   display: inline-block;
-  margin-top: 25px;
-  padding: 12px 28px;
-  background-color: #2a9d8f;
-  color: white;
-  font-weight: 600;
+  padding: 12px 24px;
+  margin-right: 15px;
+  font-size: 1rem;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 4px;
+  transition: background 0.3s;
 }
 
-.cta-btn:hover {
-  background-color: #21867a;
+.btn-primary {
+  background: #27ae60;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #219150;
+}
+
+.btn-secondary {
+  background: white;
+  color: #27ae60;
+  border: 2px solid #27ae60;
+}
+
+.btn-secondary:hover {
+  background: #27ae60;
+  color: white;
+}
+
+.hero-image img {
+  max-width: 400px;
+  border-radius: 8px;
+  object-fit: contain;
 }

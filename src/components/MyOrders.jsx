@@ -1,43 +1,54 @@
 // src/components/MyOrders.js
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import '../css/myorders.css';
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      console.log("Logged in user:", user.uid);
+      try {
+        const querySnapshot = await getDocs(collection(db, "bulkOrders"));
+        const allOrders = [];
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        try {
-          const q = query(
-            collection(db, "orders"),
-            where("vendorId", "==", user.uid)
-          );
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          console.log("Fetched Doc:", data);
 
-          const querySnapshot = await getDocs(q);
-          const fetchedOrders = querySnapshot.docs.map((doc) => doc.data());
-          setOrders(fetchedOrders);
-        } catch (error) {
-          console.error("Error fetching orders:", error);
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        setOrders([]);
+          if (Array.isArray(data.orders)) {
+            if (data.vendorId === user.uid) {
+              allOrders.push(...data.orders);
+            }
+          }
+
+        });
+
+        console.log("Total orders for vendor:", allOrders);
+        setOrders(allOrders);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      } finally {
         setLoading(false);
       }
-    });
+    } else {
+      console.log("No user logged in");
+      setOrders([]);
+      setLoading(false);
+    }
+  });
 
-    return () => unsubscribe(); // Clean up the listener
-  }, []);
+  return () => unsubscribe();
+}, []);
+
 
   return (
     <div className="orders-dashboard">
-      <h2>My Orders</h2>
+      {/* <h2>My Orders</h2> */}
       {loading ? (
         <p>Loading orders...</p>
       ) : orders.length === 0 ? (
@@ -57,8 +68,8 @@ const MyOrders = () => {
                 <td>{order.item}</td>
                 <td>{order.quantity}</td>
                 <td>
-                  <span className={`status ${order.status.toLowerCase()}`}>
-                    {order.status}
+                  <span className={`status ${order.status?.toLowerCase() || 'pending'}`}>
+                    {order.status || 'Pending'}
                   </span>
                 </td>
               </tr>
