@@ -1,6 +1,6 @@
 // src/components/Hero.jsx
 import React from 'react';
-import '../css/Hero.css';
+import '../css/hero.css';
 import illustration from '../assets/bulk-order-hero.avif'; // or use above free image link
 
 const Hero = () => (
