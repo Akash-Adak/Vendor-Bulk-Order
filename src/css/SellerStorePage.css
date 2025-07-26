@@ -1,0 +1,219 @@
+/* General Page Layout */
+.seller-store {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  font-size: 2.2rem;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+h2, h3 {
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Store Details */
+.seller-store p {
+  color: #6b7280;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.seller-store strong {
+  color: #4b5563;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+thead tr {
+  background-color: #eef2ff;
+  color: #4338ca;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th:first-child, td:first-child {
+  padding-left: 1.5rem;
+}
+
+th:last-child, td:last-child {
+  padding-right: 1.5rem;
+}
+
+tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+input:focus {
+  outline: none;
+  border-color: #4338ca;
+  box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.2);
+}
+
+/* Add New Material Section */
+.add-material {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+
+.add-material input {
+  flex: 1 1 200px; /* Flex-grow, flex-shrink, flex-basis */
+  min-width: 150px;
+}
+
+.add-material button {
+  padding: 0.75rem 1.5rem;
+  background-color: #4338ca;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  min-width: 120px;
+}
+
+.add-material button:hover {
+  background-color: #3730a3;
+}
+
+.add-material button:active {
+  transform: translateY(1px);
+}
+
+/* Loading State */
+p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #4b5563;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .seller-store {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2, h3 {
+    margin-top: 1.5rem;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  thead {
+    display: none; /* Hide table header on mobile */
+  }
+
+  tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  tr:hover {
+    background-color: #f9fafb;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: none;
+  }
+  
+  td::before {
+    /* Use data attributes for labels on mobile */
+    content: attr(data-label);
+    font-weight: 600;
+    color: #4b5563;
+    min-width: 100px;
+  }
+
+  /* To make the inputs fill the space */
+  td:last-child {
+    justify-content: flex-start;
+  }
+  
+  td:first-child input, td:nth-child(2) input, td:nth-child(3) input {
+    width: auto;
+    flex: 1;
+    text-align: right;
+  }
+
+  .add-material {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .add-material input,
+  .add-material button {
+    width: 100%;
+  }
+}
+
+/* Small adjustments for inputs in table on mobile */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="number"] {
+    text-align: right;
+    padding: 0.5rem;
+  }
+}
