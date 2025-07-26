@@ -51,9 +51,11 @@ form input {
 }
 
 .add-btn:hover {
-  background-color: #ddd;
+  background-color: #218838;
+  transition: 200ms ease-in-out;
 }
 
 .submit-btn:hover {
   background-color: #218838;
+  transition: 200ms ease-in-out;
 }

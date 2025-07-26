@@ -131,8 +131,10 @@ const NearbyStores = () => {
       {error && <p className="error">{error}</p>}
       {stores.map((store, idx) => (
         <div className="store-card" key={idx}>
-          <h3>{store.storeName}</h3>
+          <div className="store-header">
+          <h3 className="store-name">{store.storeName}</h3>
           <p className="distance">📍 {store.distance?.toFixed(2)} km away</p>
+          </div>
           <div className="product-list">
             {store.materials.map((mat, i) => {
               const key = `${store.storeId || store.id}-${mat.item}`;
@@ -146,6 +148,7 @@ const NearbyStores = () => {
                   <div className="product-details">
                     <strong>{mat.item}</strong>
                     <p>₹{mat.price}/kg</p>
+                    <div className="quantity-wrapper">
                     <input
                       type="number"
                       placeholder="Quantity"
@@ -154,6 +157,7 @@ const NearbyStores = () => {
                       onChange={(e) => handleQuantityChange(key, e.target.value)}
                       className="quantity-input"
                     />
+                    </div>
                     <button onClick={() => handleOrder(mat, store)} className="order-btn">
                       Place Order
                     </button>
