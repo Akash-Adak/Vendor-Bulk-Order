@@ -1,0 +1,32 @@
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: #e9f5f3;
+  color: #333;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 28px;
+  background-color: #2a9d8f;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.cta-btn:hover {
+  background-color: #21867a;
+}
