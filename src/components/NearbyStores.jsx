@@ -132,7 +132,7 @@ const NearbyStores = () => {
       {stores.map((store, idx) => (
         <div className="store-card" key={idx}>
           <div className="store-header">
-          <h3 className="store-name">{store.storeName}</h3>
+          <h3 className="store-name">{store.name}</h3>
           <p className="distance">📍 {store.distance?.toFixed(2)} km away</p>
           </div>
           <div className="product-list">
