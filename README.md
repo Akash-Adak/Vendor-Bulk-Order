@@ -86,9 +86,9 @@ src/
    export const auth = getAuth(app);
    export const db = getFirestore(app);
    ```
-````
 
----
+
+
 
 ## 🧪 Firestore Collections (Structure)
 
@@ -178,14 +178,6 @@ firebase init hosting
 firebase deploy
 ```
 
----
-
-## 🙌 Contributors
-
-* 👨‍💻 [Your Name](https://github.com/yourusername)
-* 🤝 Built for **Tutedude's Web Hackathon – Solving for Street Food**
-
----
 
 ## 📄 License
 
