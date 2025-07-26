@@ -35,7 +35,7 @@ const SignUp = () => {
       });
 
       console.log("✅ User signed up and stored in Firestore.");
-      navigate("/login");
+      navigate("/");
       toast.success("Login successful!");
     } catch (err) {
       console.error("❌ Signup failed:", err.message);
