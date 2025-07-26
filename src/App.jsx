@@ -13,6 +13,7 @@ import SignUp from './pages/SignUp';
 import { Toaster } from "react-hot-toast";
 import SellerOrders from "./components/SellerOrders";
 import NearbyStores from "./components/NearbyStores";
+import SellerStorePage from "./pages/SellerStorePage";
 function App() {
   return (
     <>
@@ -29,7 +30,7 @@ function App() {
            <Route path="/vendor-dashboard" element={ <VendorDashboard /> } />
        <Route path="/seller-orders" element={ <SellerOrders /> } />
           <Route path="/seller-dashboard" element={<SellerDashboard /> } />
-                  
+                  <Route path="/seller-product" element={<SellerStorePage /> } />   
       </Routes>
     </Router>
     </>
