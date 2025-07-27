@@ -121,3 +121,13 @@ h2 {
 .order-btn:hover {
   background-color: #219653;
 }
+
+/* Style for seller view */
+.seller-view .quantity-wrapper,
+.seller-view .order-btn {
+  display: none;
+}
+
+.seller-view .product-details {
+  padding-bottom: 10px;
+}
