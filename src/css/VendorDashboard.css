@@ -109,3 +109,22 @@
 .card.blue {
   border-left: 6px solid #3498db;
 }
+
+/* Loading and error states */
+.loading-indicator, .error-message {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  color: #ff4d4d;
+}
+
+/* Card improvements */
+.card small {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 4px;
+}
