@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   padding: 30px 20px;
   background: linear-gradient(135deg, #e08446, #e35187);
   text-align: center;
@@ -11,11 +12,13 @@
 .hero-content {
   max-width: 100%;
   margin-bottom: 30px;
+  padding-left: 5rem;
 }
 
 .hero-content h1 {
   font-size: 2rem;
   color: #2c3e50;
+  text-align: start;
   margin-bottom: 15px;
 }
 
@@ -23,13 +26,15 @@
   font-size: 1rem;
   color: #555;
   margin-bottom: 20px;
+  text-align: start;
+  width: 70%;
 }
 
 .buttons {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: center;
+  align-items: start;
 }
 
 .buttons .btn {
@@ -68,6 +73,7 @@
   max-width: 100%;
   border-radius: 8px;
   object-fit: contain;
+  padding-right: 5rem;
 }
 
 /* Tablet and desktop styles */
@@ -91,6 +97,7 @@
   .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 30px;
+    width: 100%;
   }
   
   .buttons {
