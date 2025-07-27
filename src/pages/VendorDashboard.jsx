@@ -10,8 +10,8 @@ const VendorDashboard = () => {
   const [totalOrders, setTotalOrders] = useState(0);
   const [pendingOrders, setPendingOrders] = useState(0);
   const [revenue, setRevenue] = useState(0);
-  const [loading, setLoading] = useState(true); // Added loading state
-  const [error, setError] = useState(null); // Added error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchOrderData = async () => {
@@ -25,39 +25,44 @@ const VendorDashboard = () => {
         const q = query(ordersRef, where("vendorId", "==", userData.uid));
         const querySnapshot = await getDocs(q);
 
-        let totalOrdersCount = 0;       // Renamed for clarity
-        let pendingOrdersCount = 0;     // Renamed for clarity
-        let totalRevenueValue = 0;      // Renamed for clarity
+        let totalOrdersCount = 0;
+        let pendingOrdersCount = 0;
+        let totalRevenueValue = 0;
+        let totalItemsCount = 0;
 
-        // Process each order document
         querySnapshot.forEach((doc) => {
-          totalOrdersCount++; // Count each order document (1 document = 1 order)
-          
           const data = doc.data();
           const ordersArray = data.orders || [];
           
-          // Check if ANY item in the order is pending (order-level status)
-          if (ordersArray.some(order => order.status === "Pending")) {
-            pendingOrdersCount++;
-          }
-
-          // Calculate revenue from all items in the order
+          // Count all items across all orders
+          totalItemsCount += ordersArray.length;
+          
+          // Calculate metrics per item (matching MyOrders.jsx structure)
           ordersArray.forEach((order) => {
+            // Count pending items (not orders)
+            if (!order.status || order.status === "Pending") {
+              pendingOrdersCount++;
+            }
+            
+            // Calculate revenue
             if (order.price && order.quantity) {
               totalRevenueValue += Number(order.price) * Number(order.quantity);
             }
           });
+          
+          // Count each document as one order
+          totalOrdersCount++;
         });
 
-        setTotalOrders(totalOrdersCount);
+        setTotalOrders(totalItemsCount); // Changed to show total items
         setPendingOrders(pendingOrdersCount);
         setRevenue(totalRevenueValue);
 
       } catch (err) {
         console.error("Failed to fetch orders: ", err);
-        setError("Failed to load order data"); // Set error message
+        setError("Failed to load order data");
       } finally {
-        setLoading(false); // Ensure loading stops even if error occurs
+        setLoading(false);
       }
     };
 
@@ -66,7 +71,6 @@ const VendorDashboard = () => {
 
   return (
     <div className="vendor-dashboard">
-      {/* Main Content */}
       <main className="main-content">
         <div className="welcome-box">
           <h1>Welcome, Vendor {userData?.email || "!"}</h1>
@@ -79,25 +83,22 @@ const VendorDashboard = () => {
           <div className="error-message">{error}</div>
         ) : (
           <div className="summary">
-            {/* Total Orders Card */}
             <div className="card green">
-              <h3>Total Orders</h3>
-              <p>{totalOrders.toLocaleString()}</p> {/* Added formatting */}
-              <small>Number of orders placed</small> {/* Added helper text */}
+              <h3>Total Items Ordered</h3> {/* Updated label */}
+              <p>{totalOrders.toLocaleString()}</p>
+              <small>Across all orders</small> {/* Updated helper text */}
             </div>
             
-            {/* Pending Orders Card */}
             <div className="card yellow">
-              <h3>Pending Orders</h3>
-              <p>{pendingOrders.toLocaleString()}</p> {/* Added formatting */}
-              <small>Awaiting fulfillment</small> {/* Added helper text */}
+              <h3>Pending Items</h3> {/* Updated label */}
+              <p>{pendingOrders.toLocaleString()}</p>
+              <small>Awaiting fulfillment</small>
             </div>
             
-            {/* Revenue Card - Changed label to "Sales Value" */}
             <div className="card blue">
-              <h3>Sales Value</h3> {/* More accurate than "Revenue" */}
-              <p>₹{revenue.toLocaleString('en-IN')}</p> {/* Proper INR formatting */}
-              <small>Total order value</small> {/* Added helper text */}
+              <h3>Sales Value</h3>
+              <p>₹{revenue.toLocaleString('en-IN')}</p>
+              <small>Total order value</small>
             </div>
           </div>
         )}
