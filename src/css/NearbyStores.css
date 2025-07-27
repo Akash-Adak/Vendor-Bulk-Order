@@ -22,34 +22,37 @@ h2 {
   background: #f5f5f5;
   border-radius: 10px;
   margin: 20px 0;
-  padding: 15px 20px;
+  padding: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.store-header { /* Added new style for store header wrapper */
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
+.store-header {
+  display: flex;
+  justify-content: space-between; /* Aligns name left and distance right */
+  align-items: flex-end; /* Aligns text to bottom */
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0; /* Lighter border */
 }
 
-.store-card h3 {
-  margin-bottom: 5px;
-  color: #34495e;
-  font-size: 1.2rem; /* Increased font size for better visibility */
-}
-
-.store-name { /* Specific style for store name */
-  margin: 0 0 5px 0; /* Only bottom margin */
-  color: #34495e;
-  font-size: 1.2rem;
-  font-weight: bold;
+.store-name {
+  margin: 0;
+  color: #2c3e50; /* Darker color for better contrast */
+  font-size: 1.3rem; /* Slightly larger */
+  font-weight: 600; /* Semi-bold */
 }
 
 .distance {
   font-size: 0.9rem;
-  color: #888;
-  margin: 0 0 15px 0; /* Only bottom margin */
-  display: block; /* Ensure it appears on new line */
+  color: #5d6d7e; /* More visible gray */
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
+
 
 .product-list {
   display: flex;
