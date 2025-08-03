@@ -1,25 +1,29 @@
 /* src/css/SignUp.css */
+
 .signup-container {
   min-height: 100vh;
   background: linear-gradient(to right, #f9f9f9, #e0f7fa);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .signup-form {
   background: white;
-  padding: 2rem 2.5rem;
+  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-  width: 100%;
+  width: calc(100% - 40px); /* Responsive width */
   max-width: 420px;
+  box-sizing: border-box; /* Critical fix */
 }
 
 .signup-title {
   text-align: center;
   font-size: 1.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* Increased spacing */
   color: #00796b;
 }
 
@@ -31,6 +35,8 @@
   border: 1px solid #bbb;
   border-radius: 8px;
   font-size: 1rem;
+  box-sizing: border-box; /* Fixes width overflow */
+  display: block; /* Ensures proper spacing */
 }
 
 .signup-button {
@@ -44,6 +50,8 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s;
+  box-sizing: border-box;
+  margin-top: 0.5rem; /* Added spacing */
 }
 
 .signup-button:hover {
@@ -53,14 +61,16 @@
 .signup-error {
   color: red;
   font-size: 0.875rem;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0; /* Better spacing */
   text-align: center;
+  display: block; /* Ensures it takes full width */
 }
 
 .toggle-method {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* Increased spacing */
+  gap: 0.5rem; /* Better button spacing */
 }
 
 .toggle-method button {
@@ -71,19 +81,21 @@
   border: none;
   cursor: pointer;
   border-radius: 6px;
-  margin-right: 0.5rem;
   transition: 0.2s;
+  box-sizing: border-box; /* Consistent sizing */
 }
 
-.toggle-method button.active {
-  background-color: #00796b;
-  color: white;
+.toggle-method button:last-child {
+  margin-right: 0; /* Remove last button margin */
 }
 
-.secondary {
-  background-color: #607d8b;
-}
-
-.secondary:hover {
-  background-color: #455a64;
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .signup-form {
+    padding: 1.5rem;
+  }
+  
+  .toggle-method {
+    flex-direction: column; /* Stack buttons on mobile */
+  }
 }

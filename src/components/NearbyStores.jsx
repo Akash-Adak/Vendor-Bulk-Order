@@ -4,6 +4,7 @@ import { collection, getDocs, addDoc, serverTimestamp } from 'firebase/firestore
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import axios from 'axios';
+import { useAuth } from '../hooks/useAuth'; // ADDED: Import useAuth hook
 import '../css/NearbyStores.css';
 
 const PEXELS_API_KEY = '4zku6FCJ44pQzFwLc5oJ3xrsyGnGUISuesAyM99dhYfTXQigACES1NSF';
@@ -14,6 +15,7 @@ const NearbyStores = () => {
   const [error, setError] = useState('');
   const [images, setImages] = useState({});
   const [quantities, setQuantities] = useState({}); // ✅ hold quantity per material-store combo
+  const { userData } = useAuth();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -119,6 +121,7 @@ const NearbyStores = () => {
       });
 
       alert(`✅ Order placed for ${material.item} (Qty: ${quantity}) successfully!`);
+      setQuantities({});
     } catch (err) {
       console.error('Order failed:', err);
       alert('❌ Failed to place order.');
@@ -131,8 +134,10 @@ const NearbyStores = () => {
       {error && <p className="error">{error}</p>}
       {stores.map((store, idx) => (
         <div className="store-card" key={idx}>
-          <h3>{store.storeName}</h3>
+          <div className="store-header">
+          <h3 className="store-name">{store.name}</h3>
           <p className="distance">📍 {store.distance?.toFixed(2)} km away</p>
+          </div>
           <div className="product-list">
             {store.materials.map((mat, i) => {
               const key = `${store.storeId || store.id}-${mat.item}`;
@@ -146,17 +151,26 @@ const NearbyStores = () => {
                   <div className="product-details">
                     <strong>{mat.item}</strong>
                     <p>₹{mat.price}/kg</p>
-                    <input
-                      type="number"
-                      placeholder="Quantity"
-                      min="1"
-                      value={quantities[key] || ''}
-                      onChange={(e) => handleQuantityChange(key, e.target.value)}
-                      className="quantity-input"
-                    />
-                    <button onClick={() => handleOrder(mat, store)} className="order-btn">
-                      Place Order
-                    </button>
+                    {userData?.role !== 'seller' && (
+                      <>
+                        <div className="quantity-wrapper">
+                          <input
+                            type="number"
+                            placeholder="Quantity"
+                            min="1"
+                            value={quantities[key] || ''}
+                            onChange={(e) => handleQuantityChange(key, e.target.value)}
+                            className="quantity-input"
+                          />
+                        </div>
+                        <button 
+                          onClick={() => handleOrder(mat, store)} 
+                          className="order-btn"
+                        >
+                          Place Order
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               );

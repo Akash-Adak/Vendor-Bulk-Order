@@ -1,0 +1,130 @@
+.vendor-dashboard {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  padding: 30px 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #26a541;
+  margin-bottom: 40px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #26a541;
+}
+
+.nav-links .logout {
+  color: #c0392b;
+}
+
+.nav-links .logout:hover {
+  color: #e74c3c;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.welcome-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.welcome-box h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.welcome-box p {
+  color: #666;
+  font-size: 16px;
+}
+
+.summary {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 220px;
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card.green {
+  border-left: 6px solid #26a541;
+}
+
+.card.yellow {
+  border-left: 6px solid #f1c40f;
+}
+
+.card.blue {
+  border-left: 6px solid #3498db;
+}
+
+/* Loading and error states */
+.loading-indicator, .error-message {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  color: #ff4d4d;
+}
+
+/* Card improvements */
+.card small {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 4px;
+}
